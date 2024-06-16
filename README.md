@@ -4,7 +4,8 @@ A simple web scraper that retrieves the content of a Wikipedia page, including t
 
 ## Features
 
-/1/ **Forward Proxy Server**
+/1/ **Forward Proxy Server**\
+https://github.com/Kensvin28/nolimit/assets/63847755/e8a0d1a6-25be-4398-805c-71a2b3b5f846
    - **Run Proxy Server:**
      ```bash
      python proxy_server.py
@@ -66,7 +67,8 @@ A simple web scraper that retrieves the content of a Wikipedia page, including t
       * Connection #0 to host localhost left intact
      ```
 
-/2/ **Wikipedia Scraper**
+/2/ **Wikipedia Scraper**\
+https://github.com/Kensvin28/nolimit/assets/63847755/82f9b5a6-7cc2-41b2-b5f8-c65ccf985efd
    - **Usage:**
      ```bash
      ./run_scraper.sh [search_phrase] [proxy_url]
