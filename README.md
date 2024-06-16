@@ -5,6 +5,7 @@ A simple web scraper that retrieves the content of a Wikipedia page, including t
 ## Features
 
 /1/ **Forward Proxy Server**\
+
 https://github.com/Kensvin28/nolimit/assets/63847755/e8a0d1a6-25be-4398-805c-71a2b3b5f846
    - **Run Proxy Server:**
      ```bash
@@ -68,6 +69,7 @@ https://github.com/Kensvin28/nolimit/assets/63847755/e8a0d1a6-25be-4398-805c-71a
      ```
 
 /2/ **Wikipedia Scraper**\
+
 https://github.com/Kensvin28/nolimit/assets/63847755/82f9b5a6-7cc2-41b2-b5f8-c65ccf985efd
    - **Usage:**
      ```bash
