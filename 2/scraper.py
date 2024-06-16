@@ -5,8 +5,6 @@ import json
 from datetime import datetime
 from content_parser import ContentParser
 
-PROXY_SERVER = "http://localhost:9919"
-
 def get_title(html):
     """Get title from span in h1"""
     pattern = r'<span class="mw-page-title-main">([^<]+)<'
@@ -54,7 +52,7 @@ def get_created_at(html):
 if __name__ == "__main__":
     args = sys.argv
     if args[-1].startswith("http://"):
-        proxy = PROXY_SERVER
+        proxy = args[-1]
     else:
         proxy = None
     phrase_list = args[1].split()
