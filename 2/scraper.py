@@ -84,7 +84,6 @@ if __name__ == "__main__":
             data = json.load(f)
     except FileNotFoundError:
         data = []
-    data = []
     data.append(res)
     with open("data.json", "w+") as f:
         json.dump(data, f)
