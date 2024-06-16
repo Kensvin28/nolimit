@@ -5,9 +5,65 @@ A simple web scraper that retrieves the content of a Wikipedia page, including t
 ## Features
 
 /1/ **Forward Proxy Server**
+   - **Run Proxy Server:**
+     ```bash
+     python proxy_server.py
+     ```
    - **Usage Example:**
      ```bash
      curl -x http://localhost:9919 https://google.com/search -vvv
+      * Host localhost:9919 was resolved.
+      * IPv6: ::1
+      * IPv4: 127.0.0.1
+      *   Trying [::1]:9919...
+      *   Trying 127.0.0.1:9919...
+      * Connected to localhost (127.0.0.1) port 9919
+      * CONNECT tunnel: HTTP/1.1 negotiated
+      * allocate connect buffer
+      * Establish HTTP proxy tunnel to google.com:443
+      > CONNECT google.com:443 HTTP/1.1
+      > Host: google.com:443
+      > User-Agent: curl/8.7.1
+      > Proxy-Connection: Keep-Alive
+      >
+      < HTTP/1.0 200 Connection established
+      < Proxy-agent: Jarvis
+      <
+      * CONNECT phase completed
+      * CONNECT tunnel established, response 200
+      * schannel: disabled automatic use of client certificate
+      * ALPN: curl offers http/1.1
+      * ALPN: server accepted http/1.1
+      * using HTTP/1.x
+      > GET /search HTTP/1.1
+      > Host: google.com
+      > User-Agent: curl/8.7.1
+      > Accept: */*
+      >
+      * Request completely sent off
+      * schannel: remote party requests renegotiation
+      * schannel: renegotiating SSL/TLS connection
+      * schannel: SSL/TLS connection renegotiated
+      < HTTP/1.1 301 Moved Permanently
+      < Location: https://www.google.com/search
+      < Content-Type: text/html; charset=UTF-8
+      < Content-Security-Policy: object-src 'none';base-uri 'self';script-src 'nonce-hKfPZl4p3Brl-n6v1Q7i-w' 'strict-dynamic' 'report-sample' 'unsafe-eval' 'unsafe-inline' https: http:;report-uri https://csp.withgoogle.com/csp/gws/xsrp
+      < Date: Sun, 16 Jun 2024 15:19:53 GMT
+      < Expires: Tue, 16 Jul 2024 15:19:53 GMT
+      < Cache-Control: public, max-age=2592000
+      < Server: gws
+      < Content-Length: 226
+      < X-XSS-Protection: 0
+      < X-Frame-Options: SAMEORIGIN
+      < Alt-Svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      <
+      <HTML><HEAD><meta http-equiv="content-type" content="text/html;charset=utf-8">
+      <TITLE>301 Moved</TITLE></HEAD><BODY>
+      <H1>301 Moved</H1>
+      The document has moved
+      <A HREF="https://www.google.com/search">here</A>.
+      </BODY></HTML>
+      * Connection #0 to host localhost left intact
      ```
 
 /2/ **Wikipedia Scraper**
@@ -24,7 +80,7 @@ A simple web scraper that retrieves the content of a Wikipedia page, including t
         ```bash
         ./run_scraper.sh "proxy server" http://localhost:9919
         ```
-   - **Example output:**
+   - **Example output (data.json):**
      ```yaml
      [{"title": "Proxy server", 
      "link": ["https://en.wikipedia.org/wiki/Wikipedia:Open_proxies", "https://en.wikipedia.org/wiki/Proxy_(disambiguation)", "https://en.wikipedia.org/wiki/File:Proxy_concept_en.svg", "https://en.wikipedia.org/wiki/Computer_networking", "https://en.wikipedia.org/wiki/Server_application", "https://en.wikipedia.org/wiki/Intermediary", "https://en.wikipedia.org/wiki/Client_(computing)", "https://en.wikipedia.org/wiki/Web_resource", "https://en.wikipedia.org/wiki/Web_page", "https://en.wikipedia.org/wiki/Load_balancing_(computing)", "https://en.wikipedia.org/wiki/Encapsulation_(networking)", "https://en.wikipedia.org/wiki/Distributed_computing", "https://en.wikipedia.org/wiki/Internet", "https://en.wikipedia.org/wiki/Gateway_(computer_networking)", "https://en.wikipedia.org/wiki/Reverse_proxy", "https://en.wikipedia.org/wiki/Load_balancing_(computing)", "https://en.wikipedia.org/wiki/Authentication_protocol", "https://en.wikipedia.org/wiki/Encryption", "https://en.wikipedia.org/wiki/Cache_(computing)", "https://en.wikipedia.org/wiki/File:Open_proxy_h2g2bob.svg", "https://en.wikipedia.org/wiki/Open_proxy", "https://en.wikipedia.org/wiki/Store_and_forward", "https://en.wikipedia.org/wiki/Gordon_Lyon", "https://en.wikipedia.org/wiki/Anonymous_proxy", "https://en.wikipedia.org/wiki/IP_address", "https://en.wikipedia.org/wiki/List_of_HTTP_header_fields", "https://en.wikipedia.org/wiki/Reverse_proxy", "https://en.wikipedia.org/wiki/File:Reverse_proxy_h2g2bob.svg", "https://en.wikipedia.org/wiki/Internet_traffic", "https://en.wikipedia.org/wiki/Secure_Sockets_Layer", "https://en.wikipedia.org/wiki/X.509", "https://en.wikipedia.org/wiki/Server_Name_Indication", "https://en.wikipedia.org/wiki/Transport_Layer_Security", "https://en.wikipedia.org/wiki/Load_balancing_(computing)", "https://en.wikipedia.org/wiki/URL", "https://en.wikipedia.org/wiki/Data_compression", "https://en.wikipedia.org/wiki/Extranet", "https://en.wikipedia.org/wiki/Content-control_software", "https://en.wikipedia.org/wiki/Content_filtering", "https://en.wikipedia.org/wiki/Acceptable_use_policy", "https://en.wikipedia.org/wiki/Authentication", "https://en.wikipedia.org/wiki/Server_log", "https://en.wikipedia.org/wiki/Bandwidth_(computers)", "https://en.wikipedia.org/wiki/Daemon_(computer_software)", "https://en.wikipedia.org/wiki/Internet_Content_Adaptation_Protocol", "https://en.wikipedia.org/wiki/Malware", "https://en.wikipedia.org/wiki/Blacklist_(Computing)", "https://en.wikipedia.org/wiki/DNSBL", "https://en.wikipedia.org/wiki/MIME", "https://en.wikipedia.org/wiki/JPEG", "https://en.wikipedia.org/wiki/Transport_Layer_Security", "https://en.wikipedia.org/wiki/Certificate_authority", "https://en.wikipedia.org/wiki/Man-in-the-middle_attack", "https://en.wikipedia.org/wiki/Internet_Protocol", "https://en.wikipedia.org/wiki/Geolocation", "https://en.wikipedia.org/wiki/File:CPT-Proxy.svg", "https://en.wikipedia.org/wiki/Eavesdropping", "https://en.wikipedia.org/wiki/HTTP_cookie", "https://en.wikipedia.org/wiki/IP_address_blocking", "https://en.wikipedia.org/wiki/Spam_(electronic)", "https://en.wikipedia.org/wiki/Troll_(Internet)", "https://en.wikipedia.org/wiki/Web_cache", "https://en.wikipedia.org/wiki/Performance_Enhancing_Proxy", "https://en.wikipedia.org/wiki/Transmission_Control_Protocol", "https://en.wikipedia.org/wiki/Acknowledgement_(data_networks)", "https://en.wikipedia.org/wiki/Application_layer", "https://en.wikipedia.org/wiki/Anonymizer", "https://en.wikipedia.org/wiki/Anonymizer", "https://en.wikipedia.org/wiki/World_Wide_Web", "https://en.wikipedia.org/wiki/Network_packet", "https://en.wikipedia.org/wiki/Geotargeting", "https://en.wikipedia.org/wiki/Internet_geolocation", "https://en.wikipedia.org/wiki/Network_address_translation", "https://en.wikipedia.org/wiki/Computer_security", "https://en.wikipedia.org/wiki/Firewall_(computing)", "https://en.wikipedia.org/wiki/Same-origin_policy", "https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol", "https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#HTTP/1.1_example_of_request_/_response_transaction", "https://en.wikipedia.org/wiki/HTTP_tunnel#HTTP_CONNECT_method", "https://en.wikipedia.org/wiki/HTTPS", "https://en.wikipedia.org/wiki/Apache_HTTP_Server", "https://en.wikipedia.org/wiki/Mod_proxy", "https://en.wikipedia.org/wiki/Traffic_Server", "https://en.wikipedia.org/wiki/HAProxy", "https://en.wikipedia.org/wiki/Internet_Information_Services", "https://en.wikipedia.org/wiki/Nginx", "https://en.wikipedia.org/wiki/Privoxy", "https://en.wikipedia.org/wiki/Squid_(software)", "https://en.wikipedia.org/wiki/Varnish_(software)", "https://en.wikipedia.org/wiki/WinGate", "https://en.wikipedia.org/wiki/Ziproxy", "https://en.wikipedia.org/wiki/Polipo", "https://en.wikipedia.org/wiki/Proxy_auto-config", "https://en.wikipedia.org/wiki/SOCKS", "https://en.wikipedia.org/wiki/OSI_model#Layer_7:_Application_layer", "https://en.wikipedia.org/wiki/Gateway_(computer_networking)", "https://en.wikipedia.org/wiki/Router_(computing)", "https://en.wikipedia.org/wiki/RFC_(identifier)", "https://en.wikipedia.org/wiki/SYN_flood", "https://en.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol", "https://en.wikipedia.org/wiki/Cross-site_scripting", "https://en.wikipedia.org/wiki/HTTP", "https://en.wikipedia.org/wiki/NTLM", "https://en.wikipedia.org/wiki/Microsoft_Forefront_Threat_Management_Gateway", "https://en.wikipedia.org/wiki/WinGate", "https://en.wikipedia.org/wiki/Web_Cache_Communication_Protocol", "https://en.wikipedia.org/wiki/GRE_tunneling", "https://en.wikipedia.org/wiki/Traceroute", "https://en.wikipedia.org/wiki/End_user", "https://en.wikipedia.org/wiki/Common_Gateway_Interface", "https://en.wikipedia.org/wiki/Web_form", "https://en.wikipedia.org/wiki/Perl", "https://en.wikipedia.org/wiki/PHP", "https://en.wikipedia.org/wiki/VPN", "https://en.wikipedia.org/wiki/Web_Accessibility_Initiative", "https://en.wikipedia.org/wiki/Web_traffic#Traffic_overload", "https://en.wikipedia.org/wiki/Slashdot_effect", "https://en.wikipedia.org/wiki/File:Vidalia-0.0.11-svn.png", "https://en.wikipedia.org/wiki/Vidalia_project", "https://en.wikipedia.org/wiki/Tor_(network)", "https://en.wikipedia.org/wiki/Internet_anonymity", "https://en.wikipedia.org/wiki/Computer_surveillance#Network_surveillance", "https://en.wikipedia.org/wiki/Traffic_analysis#In_computer_security", "https://en.wikipedia.org/wiki/Onion_routing", "https://en.wikipedia.org/wiki/I2P", "https://en.wikipedia.org/wiki/Internet_anonymity", "https://en.wikipedia.org/wiki/Garlic_routing", "https://en.wikipedia.org/wiki/IRC", "https://en.wikipedia.org/wiki/OSI_model", "https://en.wikipedia.org/wiki/Network_address_translation", "https://en.wikipedia.org/wiki/Wikipedia:Citation_needed", "https://en.wikipedia.org/wiki/Domain_Name_System", "https://en.wikipedia.org/wiki/Internet_service_provider", "https://en.wikipedia.org/wiki/Mobile_phone", "https://en.wikipedia.org/wiki/Personal_computer", "https://en.wikipedia.org/wiki/Server_(computing)", "https://en.wikipedia.org/wiki/Internet_of_things", "https://en.wikipedia.org/wiki/Potentially_unwanted_program", "https://en.wikipedia.org/wiki/Application_firewall", "https://en.wikipedia.org/wiki/Captive_portal", "https://en.wikipedia.org/wiki/Darknet", "https://en.wikipedia.org/wiki/Distributed_Checksum_Clearinghouse", "https://en.wikipedia.org/wiki/FreeProxy", "https://en.wikipedia.org/wiki/Internet_privacy", "https://en.wikipedia.org/wiki/InterPlanetary_File_System", "https://en.wikipedia.org/wiki/Proxy_list", "https://en.wikipedia.org/wiki/Proxy_pattern", "https://en.wikipedia.org/wiki/SMTP_proxy", "https://en.wikipedia.org/wiki/Virtual_private_network", "https://en.wikipedia.org/wiki/Web_accelerator", "https://en.wikipedia.org/wiki/Web_cache", "https://en.wikipedia.org/wiki/Ari_Luotonen", "https://en.wikipedia.org/wiki/Gordon_Lyon", "https://en.wikipedia.org/wiki/ISBN_(identifier)", "https://en.wikipedia.org/wiki/Special:BookSources/978-0-9799587-1-7", "https://en.wikipedia.org/wiki/Doi_(identifier)", "https://en.wikipedia.org/wiki/ISSN_(identifier)", "https://en.wikipedia.org/wiki/S2CID_(identifier)", "https://en.wikipedia.org/wiki/ISBN_(identifier)", "https://en.wikipedia.org/wiki/Special:BookSources/978-1-59059-627-2", "https://en.wikipedia.org/wiki/Internet_Engineering_Task_Force", "https://en.wikipedia.org/wiki/Doi_(identifier)", "https://en.wikipedia.org/wiki/Request_for_Comments", "https://en.wikipedia.org/wiki/Internet_Engineering_Task_Force", "https://en.wikipedia.org/wiki/Doi_(identifier)", "https://en.wikipedia.org/wiki/Request_for_Comments", "https://en.wikipedia.org/wiki/Internet_Engineering_Task_Force", "https://en.wikipedia.org/wiki/Doi_(identifier)", "https://en.wikipedia.org/wiki/Request_for_Comments", "https://en.wikipedia.org/wiki/United_States_Computer_Emergency_Readiness_Team", "https://en.wikipedia.org/wiki/ISBN_(identifier)", "https://en.wikipedia.org/wiki/Special:BookSources/978-0-596-00162-9", "https://en.wikipedia.org/wiki/Doi_(identifier)", "https://en.wikipedia.org/wiki/Hdl_(identifier)", "https://en.wikipedia.org/wiki/S2CID_(identifier)", "https://en.wikipedia.org/wiki/ISBN_(identifier)", "https://en.wikipedia.org/wiki/Special:BookSources/978-1-56592-871-8", "https://en.wikipedia.org/wiki/ISBN_(identifier)", "https://en.wikipedia.org/wiki/Special:BookSources/978-1-78961-294-3", "https://en.wikipedia.org/wiki/Doi_(identifier)", "https://en.wikipedia.org/wiki/ISBN_(identifier)", "https://en.wikipedia.org/wiki/Special:BookSources/978-1-5386-6660-9", "https://en.wikipedia.org/wiki/S2CID_(identifier)", "https://en.wikipedia.org/wiki/Curlie", "https://en.wikipedia.org/wiki/Curlie", "https://en.wikipedia.org/wiki/Curlie", "https://en.wikipedia.org/wiki/Help:Category", "https://en.wikipedia.org/wiki/Category:Computer_networking", "https://en.wikipedia.org/wiki/Category:Network_performance", "https://en.wikipedia.org/wiki/Category:Internet_architecture", "https://en.wikipedia.org/wiki/Category:Internet_privacy", "https://en.wikipedia.org/wiki/Category:Computer_security_software", "https://en.wikipedia.org/wiki/Category:Proxy_servers", "https://en.wikipedia.org/wiki/Category:Articles_with_short_description", "https://en.wikipedia.org/wiki/Category:Short_description_matches_Wikidata", "https://en.wikipedia.org/wiki/Category:Use_dmy_dates_from_April_2020", "https://en.wikipedia.org/wiki/Category:Articles_containing_potentially_dated_statements_from_September_2021", "https://en.wikipedia.org/wiki/Category:All_articles_containing_potentially_dated_statements", "https://en.wikipedia.org/wiki/Category:All_articles_with_unsourced_statements", "https://en.wikipedia.org/wiki/Category:Articles_with_unsourced_statements_from_July_2023", "https://en.wikipedia.org/wiki/Category:Articles_prone_to_spam_from_August_2016", "https://en.wikipedia.org/wiki/Category:Articles_with_Curlie_links", "https://en.wikipedia.org/wiki/Wikipedia:About", "https://en.wikipedia.org/wiki/Wikipedia:General_disclaimer"], 
